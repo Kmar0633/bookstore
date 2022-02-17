@@ -5,9 +5,20 @@ from django.contrib.auth.models import (
 
 
 class CustomUser(AbstractUser):
-    is_student = models.BooleanField(default=False)
-    is_teacher = models.BooleanField(default=False)
-    mailing_address = models.CharField(max_length=200, blank=True)
+   
+    status = (
+        ('e', 'kid customer'),
+        ('a', 'adult customer'),
+        ('b', 'admin'),
+        
+    )
+    position = models.CharField(
+        max_length=1,
+        choices=status,
+        blank=False,
+        default='e',
+        help_text='Position Type',
+    )
     
 
 # Create your models here.

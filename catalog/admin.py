@@ -14,16 +14,14 @@ from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
     list_display = (
-        'username', 'email', 'first_name', 'last_name', 'is_staff',
-        'is_teacher', 'is_student', 'mailing_address'
-        )
+        'username', 'email', 'first_name', 'last_name', 'position'        )
 
     fieldsets = (
         (None, {
             'fields': ('username', 'password')
         }),
         ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email')
+            'fields': ('first_name', 'last_name', 'email','position')
         }),
         ('Permissions', {
             'fields': (
@@ -33,9 +31,6 @@ class CustomUserAdmin(UserAdmin):
         }),
         ('Important dates', {
             'fields': ('last_login', 'date_joined')
-        }),
-        ('Additional info', {
-            'fields': ('is_student', 'is_teacher', 'mailing_address')
         })
     )
 
@@ -44,7 +39,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('username', 'password1', 'password2')
         }),
         ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email')
+            'fields': ('first_name', 'last_name', 'email','position')
         }),
         ('Permissions', {
             'fields': (
@@ -54,9 +49,6 @@ class CustomUserAdmin(UserAdmin):
         }),
         ('Important dates', {
             'fields': ('last_login', 'date_joined')
-        }),
-        ('Additional info', {
-            'fields': ('is_student', 'is_teacher', 'mailing_address')
         })
     )
 
