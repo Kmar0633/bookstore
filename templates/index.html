@@ -1,8 +1,11 @@
 {% block content %}
+
+{{ user.position }}
   <h1>Book Store</h1>
   <p>Welcome to the Bookstore</p>
   <h2>Dynamic content</h2>
   <p>The Book store has the following books available for you:</p>
+
   {% if book_list %}
   <Table>
     <Tr>
