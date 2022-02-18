@@ -19,9 +19,14 @@ def index(request):
         'book_list':book_list,
       
     }
-
+    if request.user.position=='b':
+        return render(request, 'admin.html', context=context)
     # Render the HTML template index.html with the data in the context variable
-    return render(request, 'index.html', context=context)
+    else:
+        
+        return render(request, 'index.html', context=context)
+
+
 
 #class BookListView(generic.ListView):
     
