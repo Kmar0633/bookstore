@@ -1,8 +1,9 @@
-from django.db import models
+from django.db import migrations, models
+
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser,AbstractUser
 )
-
+from django import db
 
 class CustomUser(AbstractUser):
    
@@ -20,6 +21,7 @@ class CustomUser(AbstractUser):
         help_text='Position Type',
     )
     
+    profile_image = models.ImageField(default="default-profile.jpeg", null=True, blank=True)
 
 # Create your models here.
 class Book(models.Model):
@@ -41,8 +43,7 @@ class Book(models.Model):
         default='e',
         help_text='Book availability',
     )
-    image = models.CharField('image', max_length=13, unique=True,
-                             help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
+    book_cover_image = models.ImageField(default="default-profile.jpeg", null=True, blank=True)
 
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
     # Genre class has already been defined so we can specify the object above.

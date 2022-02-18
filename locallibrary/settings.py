@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os 
 from pathlib import Path
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Add our new application
-   'catalog.apps.CatalogConfig'
+   'catalog.apps.CatalogConfig',
+   'storages'
    
     
     
@@ -132,5 +135,21 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AWS_ACCESS_KEY_ID = 'AKIAUQV4RBORGRQYYSVX'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'kevin-m-bucket'
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
 
+S3DIRECT_DESTINATIONS = {
+    'primary_destination': {
+        'key': 'uploads/',
+        'allowed': ['image/jpg', 'image/jpeg', 'image/png', 'video/mp4'],
+    },
+}
+
+AWS_S3_FILE_OVERWRITE= False
+
+AWS_DEFAULT_ACL=None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AUTH_USER_MODEL = 'catalog.CustomUser'
