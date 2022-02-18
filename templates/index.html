@@ -15,12 +15,20 @@
         <Td>Age Group</Td>
       </Tr>
     {% for book in book_list %}
+    
+
       <Tr>
         <Td>{{ book.title }}</Td>
         <Td>({{book.author}})</Td>
         <Td>{{ book.book_cover_image }}</Td>
-        <Td>({{book.age_group}})</Td>
+            {% if book.age_group == "e"  %}
+            <Td> Under-eighteen </Td>
+            {% else %}
+            <Td> Over-eighteen </Td>
+            {% endif %}
       </Tr>
+
+   
     {% endfor %}
     </Table>
   {% else %}

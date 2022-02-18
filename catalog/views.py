@@ -8,9 +8,12 @@ def index(request):
     # Generate counts of some of the main objects
     num_books = Book.objects.all().count()
     book_list = Book.objects.all()
+    children_book_list=Book.objects.filter(age_group='e')
+   
     # The 'all()' is implied by default.
-  
-
+    if request.user.position=='e':
+        book_list=children_book_list
+    
     context = {
         'num_books': num_books,
         'book_list':book_list,
