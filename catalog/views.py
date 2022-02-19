@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import generic
 # Create your views here.
 from .models import Book
@@ -19,13 +19,24 @@ def index(request):
         'book_list':book_list,
       
     }
-    if request.user.position=='b':
-        return render(request, 'admin.html', context=context)
-    # Render the HTML template index.html with the data in the context variable
-    else:
-        
-        return render(request, 'index.html', context=context)
+    return render(request, 'index.html', context=context)
 
+def admin(request):
+    """View function for home page of site."""
+
+    # Generate counts of some of the main objects
+    num_books = Book.objects.all().count()
+    book_list = Book.objects.all()
+    
+    
+    context = {
+        'num_books': num_books,
+        'book_list':book_list,
+      
+    }
+    return render(request, 'admin.html', context=context)
+    # Render the HTML template index.html with the data in the context variable
+    
 
 
 #class BookListView(generic.ListView):
@@ -33,3 +44,10 @@ def index(request):
   #  context_object_name = 'my_book_list'   # your own name for the list as a template variable
  #   queryset = Book.objects.filter(title__icontains='war')[:5] # Get 5 books containing the title war
   #  template_name = 'templates/profile.html'  # Specify your own template name/location
+
+
+
+def delete_book(request,book_id =None):
+    book = Book.objects.get(pk=book_id)
+    book.delete()
+    return redirect('admin')

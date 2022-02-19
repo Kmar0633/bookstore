@@ -58,7 +58,7 @@ class CustomUserAdmin(UserAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'age_group', 'book_cover_image')
+    list_display = ('id','title', 'author', 'age_group', 'book_cover_image')
 
 
 admin.site.register(CustomUser, CustomUserAdmin)

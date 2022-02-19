@@ -9,15 +9,18 @@
   {% if book_list %}
   <Table>
     <Tr>
+        <Td>id</Td>
         <Td>Title</Td>
         <Td>Author</Td>
         <Td>Image</Td>
         <Td>Age Group</Td>
+        <Td></Td>
       </Tr>
     {% for book in book_list %}
     
 
       <Tr>
+        <Td>{{ book.id }}</Td>
         <Td>{{ book.title }}</Td>
         <Td>({{book.author}})</Td>
         <Td>{{ book.book_cover_image }}</Td>
@@ -26,6 +29,8 @@
             {% else %}
             <Td> Over-eighteen </Td>
             {% endif %}
+            <td><a href="{% url 'delete-book' book.id %}">Delete Book</a></td>
+
       </Tr>
 
    
