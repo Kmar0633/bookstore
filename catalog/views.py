@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import generic
+
+
 # Create your views here.
 from .models import Book
 def index(request):
@@ -51,3 +53,21 @@ def delete_book(request,book_id =None):
     book = Book.objects.get(pk=book_id)
     book.delete()
     return redirect('admin')
+
+def add_book(request):
+	 if request.method == 'POST':
+            if request.POST.get('title') and request.POST.get('image') and request.POST.get('author') and request.POST.get('age_group'):
+                post=Book()
+                post.title= request.POST.get('title')
+                post.book_cover_image= request.POST.get('image')
+                post.author= request.POST.get('author')
+                post.age_group= request.POST.get('age_group')
+                post.save()
+
+               
+      
+                
+                return redirect('admin') 
+
+            else:
+                return redirect('admin')

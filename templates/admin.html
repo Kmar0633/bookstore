@@ -6,6 +6,26 @@
 
   <p>The Book store has the following books available for you to add, delete and view:</p>
 
+  <form action="{% url 'add-book' %} " method="POST">
+    {% csrf_token %}
+    Title: 
+    <input type="text" name="title"/>
+    <br/>
+    author: 
+    <input type="text" name="author"/>
+    Image: 
+    <input type="text" name="image"/>
+    age Group: 
+    <select name="age_group" id="age_group" multiple="multiple">
+      <option value="e">under-eighteen</option>
+      <option value="a">adult</option>
+    
+    </select>
+    <input type="submit" value="Post"/>
+    </form>
+    
+
+
   {% if book_list %}
   <Table>
     <Tr>

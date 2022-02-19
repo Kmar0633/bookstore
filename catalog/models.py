@@ -55,3 +55,4 @@ class Book(models.Model):
         """String for representing the Model object."""
         return self.title
 
+
