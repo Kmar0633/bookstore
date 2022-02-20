@@ -155,3 +155,5 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AUTH_USER_MODEL = 'catalog.CustomUser'
 
 LOGIN_REDIRECT_URL = '/catalog'
+
+LOGOUT_REDIRECT_URL = '/catalog/login'

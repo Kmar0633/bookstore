@@ -11,17 +11,52 @@ def index(request):
     num_books = Book.objects.all().count()
     book_list = Book.objects.all()
     children_book_list=Book.objects.filter(age_group='e')
-   
-    # The 'all()' is implied by default.
-    if request.user.position=='e':
-        book_list=children_book_list
-    
     context = {
-        'num_books': num_books,
-        'book_list':book_list,
+            'num_books': num_books,
+            'book_list':book_list,
       
-    }
-    return render(request, 'index.html', context=context)
+            }
+    # The 'all()' is implied by default.
+    if request.user.is_authenticated:
+        if request.user.position=='b':
+            
+    
+            
+            return render(request, 'admin.html', context=context)
+        if request.user.position=='e':
+            book_list=children_book_list
+            context = {
+            'num_books': num_books,
+            'book_list':children_book_list,
+      
+            }
+            
+            return render(request, 'index.html', context=context)
+
+        
+
+        return render(request, 'index.html', context=context)
+        
+
+    else:
+         return render(request, 'error_page.html')
+
+def error(request):
+    """View function for home page of site."""
+
+    # Generate counts of some of the main objects
+    num_books = Book.objects.all().count()
+    book_list = Book.objects.all()
+    children_book_list=Book.objects.filter(age_group='e')
+    context = {
+            'num_books': num_books,
+            'book_list':book_list,
+      
+            }
+    # The 'all()' is implied by default.
+    if request.user.is_authenticated:
+        if request.user.position=='e':
+            book_list=children_book_list
 
 def admin(request):
     """View function for home page of site."""
@@ -36,7 +71,16 @@ def admin(request):
         'book_list':book_list,
       
     }
-    return render(request, 'admin.html', context=context)
+    if request.user.is_authenticated:
+        if request.user.position=='b':
+            
+    
+            
+            
+            return render(request, 'admin.html', context=context)
+        
+    
+    return render(request, 'error_page.html')
     # Render the HTML template index.html with the data in the context variable
     
 
