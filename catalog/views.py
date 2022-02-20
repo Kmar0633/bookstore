@@ -96,7 +96,7 @@ def admin(request):
 def delete_book(request,book_id =None):
     book = Book.objects.get(pk=book_id)
     book.delete()
-    return redirect('admin')
+    return redirect('/')
 
 def add_book(request):
 	 if request.method == 'POST':
@@ -111,7 +111,7 @@ def add_book(request):
                
       
                 
-                return redirect('admin') 
+                return redirect('/') 
 
             else:
-                return redirect('admin')
+                return redirect('/')
