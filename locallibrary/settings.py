@@ -138,6 +138,9 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# created configurations to connect django app to aws server. aws server details provided below
+
 AWS_ACCESS_KEY_ID = 'AKIAUQV4RBORGRQYYSVX'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'kevin-m-bucket'
@@ -157,6 +160,7 @@ AWS_DEFAULT_ACL=None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AUTH_USER_MODEL = 'catalog.CustomUser'
 
+# urls to redirect login and logout actiond
 LOGIN_REDIRECT_URL = '/catalog'
 
 LOGOUT_REDIRECT_URL = '/catalog/login'
