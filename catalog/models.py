@@ -6,7 +6,7 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser,AbstractUser
 )
 from django import db
-
+from locallibrary.settings import AWS_STORAGE_BUCKET_NAME
 class CustomUser(AbstractUser):
     
     """
@@ -65,8 +65,8 @@ class Book(models.Model):
     # book cover image attribute which consists of an image of the book cover
     book_cover_image = models.ImageField(default="default-profile.jpeg", null=True, blank=True)
 
-  
-
+    url="https://%s.s3.amazonaws.com/%s" % (AWS_STORAGE_BUCKET_NAME, book_cover_image)
+    
     def __str__(self):
         """String for representing the Model object."""
         return self.title

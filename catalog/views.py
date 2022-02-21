@@ -114,7 +114,7 @@ def add_book(request):
                 post.author=request.POST.get('author')
                 post.age_group=request.POST.get('age_group')
                 post.book_cover_image= request.FILES['fileToUpload']
-
+                
                 post.save()
 
                 return redirect('/') 
