@@ -109,7 +109,7 @@ def delete_book(request,book_id =None):
 
 def add_book(request):
 	 if request.method == 'POST':
-            if request.FILES['fileToUpload'] and request.POST.get('title')  and request.POST.get('author')  and request.POST.get('age_group'):
+            if request.FILES.get('fileToUpload', True) and request.POST.get('title')  and request.POST.get('author')  and request.POST.get('age_group'):
                 post=Book()
                 
               
@@ -127,9 +127,16 @@ def add_book(request):
       
                 
                 return redirect('/') 
-
             else:
-                return redirect('/')
+                book_list = Book.objects.all()
+    
+    
+                context = {
+                'book_list':book_list,
+                'ERROR':'Input field is empty'
+                }
+
+                return render(request, 'admin.html', context)
 
 def upload(request):
     

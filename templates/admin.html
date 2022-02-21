@@ -7,7 +7,7 @@
   <p>Welcome to the Bookstore</p>
 
   <p>The Book store has the following books available for you to add, delete and view:</p>
-
+  
   <form action="{% url 'add-book' %} " enctype=multipart/form-data method="POST">
     {% csrf_token %}
     {{ form.as_p }}
@@ -26,8 +26,11 @@ Image to upload:
 
 
     <input type=submit value=Upload>
+
+
     </form>
-    
+   
+    {{ ERROR }} 
     
   {% if book_list %}
   <Table>
