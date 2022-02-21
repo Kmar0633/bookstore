@@ -1,19 +1,21 @@
 {% block content %}
 
-{{ user.position }}
-
 <p><a href="{% url 'logout' %}">Log Out</a></p>
 
 
-
 Profile Picture:
-
+<br>
 <img src="{{ user.profile_image.url  }}"  width="100" height="100"alt="img">
-
+<br>
+<br>
 <form action="{% url 'add-profilepicture' user.id %} " enctype=multipart/form-data method="POST">
   {% csrf_token %}
   {{ form.as_p }}
+  Upload a profile picture:
+  <br>
   <input type="file" name="fileToUpload">
+  <br>
+  <br>
   <input type=submit value=Upload>
 </form>
 
@@ -24,37 +26,46 @@ Profile Picture:
 
   <p>The Book store has the following books available for you to add, delete and view:</p>
   
+  <h3>Add Book details:</h3>
   <form action="{% url 'add-book' %} " enctype=multipart/form-data method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     Title: 
     <input type="text" name="title"/>
-Image to upload:
+    <br>
+    <br>
+    Image to upload:
     <input type="file" name="fileToUpload">
+     <br>
+    <br>
     Author:
     <input type="text" name="author"/>
-    Book age group:
+    <br>
+    <br>
+    Book Age Group:
     <select name="age_group" id="age_group" multiple="multiple">
       <option value="e">under-eighteen</option>
       <option value="a">adult</option>
     
     </select>
 
-
-    <input type=submit value=Upload>
+    <br>
+    <br>
+    <input type=submit value='Upload Book'>
 
 
     </form>
    
     {{ ERROR }} 
-    
+    <br>
+    <h3> Book List:</h3>
   {% if book_list %}
   <Table>
     <Tr>
         <Td>id</Td>
         <Td>Title</Td>
         <Td>Author</Td>
-        <Td>Image</Td>
+        <Td>Book Cover</Td>
         <Td>Age Group</Td>
         <Td></Td>
       </Tr>

@@ -144,7 +144,7 @@ def add_book(request):
     
                 context = {
                 'book_list':book_list,
-                'ERROR':'Input field is empty'
+                'ERROR':'Error message: Input field is empty'
                 }
 
                 return render(request, 'admin.html', context)
