@@ -8,13 +8,19 @@ from django.contrib.auth.models import (
 from django import db
 
 class CustomUser(AbstractUser):
-   
+    
+    """
+    Stores a single user for the bookstore with attributes such as their role position and profile image 
+    """
+
     status = (
         ('e', 'kid customer'),
         ('a', 'adult customer'),
         ('b', 'admin'),
         
     )
+
+    # the role position attribute which allows users to select from 3 different options: kid customer, adult customer and admin. 
     position = models.CharField(
         max_length=1,
         choices=status,
@@ -23,22 +29,31 @@ class CustomUser(AbstractUser):
         help_text='Position Type',
     )
     
+     # profile image attribute allows the user to upload a profile picture in the web app 
     profile_image = models.ImageField(default="default-profile.jpeg", null=True, blank=True)
 
-# Create your models here.
+    
+
+
 class Book(models.Model):
-    """Model representing a book (but not a specific copy of a book)."""
+    
+    """
+    Stores a single book for the bookstore with attributes such as their title, author, age group and booc cover image
+    """
+      # book title attribute 
     title = models.CharField(max_length=200)
 
 
-    # Foreign Key used because book can only have one author, but authors can have multiple books
-    # Author as a string rather than object because it hasn't been declared yet in the file
+    
+    # book author attribute 
     author = models.CharField(max_length=200)
     status = (
         ('e', 'under-eighteen'),
         ('a', 'adult'),
         
     )
+      # age group attribute which determines the age group suited to read the book- has 2 fixed choices:an under-eighteen book
+      # or adult book
     age_group = models.CharField(
         max_length=1,
         choices=status,
@@ -46,10 +61,11 @@ class Book(models.Model):
         default='e',
         help_text='Book availability',
     )
+
+    # book cover image attribute which consists of an image of the book cover
     book_cover_image = models.ImageField(default="default-profile.jpeg", null=True, blank=True)
 
-    # ManyToManyField used because genre can contain many books. Books can cover many genres.
-    # Genre class has already been defined so we can specify the object above.
+  
 
     def __str__(self):
         """String for representing the Model object."""
