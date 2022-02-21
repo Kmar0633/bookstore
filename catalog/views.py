@@ -5,7 +5,7 @@ import boto3
 
 
 # Create your views here.
-from .models import Book
+from .models import Book, CustomUser
 
 session = boto3.Session(
     aws_access_key_id=  'AKIAUQV4RBORGRQYYSVX',
@@ -107,6 +107,17 @@ def delete_book(request,book_id =None):
     book.delete()
     return redirect('/')
 
+def add_profilepicture(request,user_id =None):
+    if request.method == 'POST':
+        if request.FILES.get('fileToUpload', True):
+            print(CustomUser.objects.get(pk=user_id))
+            print(CustomUser.objects.get(pk=user_id).profile_image)
+            user = CustomUser.objects.get(pk=user_id)
+            user.profile_image=request.FILES.get('fileToUpload')
+           
+            user.save()
+            return redirect('/')
+
 def add_book(request):
 	 if request.method == 'POST':
             if request.FILES.get('fileToUpload', True) and request.POST.get('title')  and request.POST.get('author')  and request.POST.get('age_group'):
@@ -118,7 +129,7 @@ def add_book(request):
                 post.age_group=request.POST.get('age_group')
                 post.book_cover_image= request.FILES['fileToUpload']
 
-                upload(request)
+                #upload(request)
 
 
                 post.save()
