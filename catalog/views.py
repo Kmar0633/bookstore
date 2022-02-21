@@ -1,9 +1,18 @@
 from django.shortcuts import render,redirect
 from django.views import generic
+from locallibrary.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY , AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME
+import boto3
 
 
 # Create your views here.
 from .models import Book
+
+session = boto3.Session(
+    aws_access_key_id=  'AKIAUQV4RBORGRQYYSVX',
+    aws_secret_access_key = '9cqXxDBAjwwy3plgyAwB/K9FNY/fHId19kCe8Xfy'
+   
+)
+
 def index(request):
     """View function for home page of site."""
 
@@ -100,12 +109,18 @@ def delete_book(request,book_id =None):
 
 def add_book(request):
 	 if request.method == 'POST':
-            if request.POST.get('title') and request.POST.get('image') and request.POST.get('author') and request.POST.get('age_group'):
+            if request.FILES['fileToUpload'] and request.POST.get('title'):
                 post=Book()
-                post.title= request.POST.get('title')
-                post.book_cover_image= request.POST.get('image')
-                post.author= request.POST.get('author')
-                post.age_group= request.POST.get('age_group')
+                
+              
+                post.title=request.POST.get('title')
+                
+               
+                post.book_cover_image= request.FILES['fileToUpload']
+
+                upload(request)
+
+
                 post.save()
 
                
@@ -115,3 +130,14 @@ def add_book(request):
 
             else:
                 return redirect('/')
+
+def upload(request):
+    
+    fileToUpload = request.FILES.get('fileToUpload')
+    cloudFilename = 'images/' + fileToUpload.name 
+    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3 = session.resource('s3')
+    s3.Bucket(AWS_STORAGE_BUCKET_NAME).put_object(Key=cloudFilename, Body=fileToUpload)
+
+    return redirect('/')

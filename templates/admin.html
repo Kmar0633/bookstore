@@ -8,25 +8,17 @@
 
   <p>The Book store has the following books available for you to add, delete and view:</p>
 
-  <form action="{% url 'add-book' %} " method="POST">
+  <form action="{% url 'add-book' %} " enctype=multipart/form-data method="POST">
     {% csrf_token %}
+    {{ form.as_p }}
     Title: 
     <input type="text" name="title"/>
-    author: 
-    <input type="text" name="author"/>
-    Image: 
-    <input type="text" name="image"/>
-    age Group: 
-    <select name="age_group" id="age_group" multiple="multiple">
-      <option value="e">under-eighteen</option>
-      <option value="a">adult</option>
-    
-    </select>
-    <input type="submit" value="Post"/>
+Image to upload
+    <input type="file" name="fileToUpload">
+    <input type=submit value=Upload>
     </form>
     
-
-
+    
   {% if book_list %}
   <Table>
     <Tr>
