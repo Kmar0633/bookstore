@@ -28,6 +28,7 @@ Profile Picture:
         <Td>Author</Td>
         <Td>Image</Td>
         <Td>Age Group</Td>
+        <Td>Age Group</Td>
       </Tr>
     {% for book in book_list %}
     
@@ -42,6 +43,10 @@ Profile Picture:
             {% else %}
             <Td> Over-eighteen </Td>
             {% endif %}
+
+            <Td> "https://kevin-m-bucket.s3.amazonaws.com/{{book.book_cover_image}}"
+              
+            </Td>
       </Tr>
 
    

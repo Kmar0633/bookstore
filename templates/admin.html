@@ -82,10 +82,11 @@ Profile Picture:
             {% else %}
             <Td> Over-eighteen </Td>
             {% endif %}
-            <td><a href="{% url 'delete-book' book.id %}">Delete Book</a></td>
+            
             <Td> "https://kevin-m-bucket.s3.amazonaws.com/{{book.book_cover_image}}"
               
             </Td>
+            <td><a href="{% url 'delete-book' book.id %}">Delete Book</a></td>
       </Tr>
 
    
