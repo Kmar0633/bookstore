@@ -109,13 +109,13 @@ def delete_book(request,book_id =None):
 
 def add_book(request):
 	 if request.method == 'POST':
-            if request.FILES['fileToUpload'] and request.POST.get('title'):
+            if request.FILES['fileToUpload'] and request.POST.get('title')  and request.POST.get('author')  and request.POST.get('age_group'):
                 post=Book()
                 
               
                 post.title=request.POST.get('title')
-                
-               
+                post.author=request.POST.get('author')
+                post.age_group=request.POST.get('age_group')
                 post.book_cover_image= request.FILES['fileToUpload']
 
                 upload(request)

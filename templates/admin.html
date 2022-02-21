@@ -13,8 +13,18 @@
     {{ form.as_p }}
     Title: 
     <input type="text" name="title"/>
-Image to upload
+Image to upload:
     <input type="file" name="fileToUpload">
+    Author:
+    <input type="text" name="author"/>
+    Book age group:
+    <select name="age_group" id="age_group" multiple="multiple">
+      <option value="e">under-eighteen</option>
+      <option value="a">adult</option>
+    
+    </select>
+
+
     <input type=submit value=Upload>
     </form>
     
@@ -36,7 +46,7 @@ Image to upload
         <Td>{{ book.id }}</Td>
         <Td>{{ book.title }}</Td>
         <Td>({{book.author}})</Td>
-        <Td>{{ book.book_cover_image }}</Td>
+        <Td> <img src="{{ book.book_cover_image.url }}"  width="100" height="100"alt="img"></Td>
             {% if book.age_group == "e"  %}
             <Td> Under-eighteen </Td>
             {% else %}
