@@ -27,7 +27,7 @@ Logging in with a username or password thats incorrect will create an eror messa
 
 ![error page](pictures/error.png)
 
-Additionally, trying to access the home page (http://127.0.0.1:8000/catalog/)for the customers and admin without authenticating in will direct you to an error page:
+Additionally, trying to access the home page (http://127.0.0.1:8000/catalog/) for the customers and admin without authenticating in will direct you to an error page:
 
 ![error2 page](pictures/error-2.png)
 
@@ -40,7 +40,8 @@ Accessing the website as a kid customer will direct you to this page:
 
 The web page will show the user a list of books that are under eighteen as shown in the age group column. Details of the books such as its
 authors, title, book cover image and url are shown  in the list. The profile and book cover images are retrieved from the aws s3 server and correspond to each 
-user and book through the user id and book id in the html files and the django database. To upload and change the profile image of the user, click choose file
+user and book through the user id and book id in the html files and the django database. Uploading the book cover image and profile image 
+will send the photos to the aws s3 server. To upload and change the profile image of the user, click choose file
 to select the image and click upload to upload the image. As shown, only books that are under eighteen are shown to kid customers.
 
 ## adult customer page
